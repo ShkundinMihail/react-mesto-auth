@@ -178,7 +178,7 @@ function App() {
         localStorage.setItem('token', data.token);
         setUserEmail(email);
         setLoggedIn(true);
-        navigate('/me', { replace: true });
+        navigate('/', { replace: true });
       })
       .catch(err => {
         console.log(`Ошибка входа. Введите корректный логин или пройдите регистрацию. 😟: ${err}`);
@@ -193,7 +193,7 @@ function App() {
           if (res) {
             setUserEmail(res.data.email);
             setLoggedIn(true);
-            navigate('/me', { replace: true });
+            navigate('/', { replace: true });
           }
         })
         .catch((err) => {
@@ -213,7 +213,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header loggedIn={loggedIn} email={userEmail} handleLogOutAccount={handleLogOutAccount} />
         <Routes>
-          <Route path="/me" element={
+          <Route path="/" element={
             <ProtectedRouteElement
               element={Main}
               onClickAvatar={handleOpenEditAvatarPopup}
