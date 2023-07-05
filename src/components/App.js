@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Header } from './Header.js';
 import api from "../utils/api.js";
 import { Main } from './Main.js';
@@ -208,8 +208,7 @@ function App() {
     setUserEmail('');
     navigate('/sign-in', { replace: true });
   }
-  const location = useLocation()
-  console.log(location)
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>

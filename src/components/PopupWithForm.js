@@ -2,13 +2,14 @@ import React from "react";
 import closeIcon from '../images/Close-Icon.svg'
 
 export function PopupWithForm(props) {
+    const ref = React.useRef();
     const closePopupWhenClickingOnOverlay = (e) => {
-        if (e.target.className === 'popup  popup_opened') {
+        if (ref.current.className === 'popup  popup_opened') {
             props.onClose()
         }
     };
     return (
-        <div onClick={closePopupWhenClickingOnOverlay} className={`popup  ${props.popupOpen ? 'popup_opened' : ''}`}>
+        <div ref={ref} onClick={closePopupWhenClickingOnOverlay} className={`popup  ${props.popupOpen ? 'popup_opened' : ''}`}>
             <div className="popup__content">
                 <button className="popup__close" type="button" ><img className="popup__close-icon" src={closeIcon} alt="Х" onClick={props.onClose} /></button>
                 <h3 className="popup__title">{props.title}</h3>
