@@ -1,16 +1,25 @@
 .author__info-zone {
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    padding: 22px 20px 25px 30px;
-    gap: 8px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px 25px 30px;
+  gap: 8px;
+  position: relative;
 }
-
-@media screen and (max-width:620px) {
-    .author__info-zone {
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        padding: 25px 0 0 0;
-    }
+.author__info-zone-error {
+  color: white;
+  position: absolute;
+  top: 68px;
+  font-size: 12px;
+}
+@media screen and (max-width: 620px) {
+  .author__info-zone {
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 25px 0 0 0;
+  }
+  .author__info-zone-error {
+    top: 55px;
+  }
 }
