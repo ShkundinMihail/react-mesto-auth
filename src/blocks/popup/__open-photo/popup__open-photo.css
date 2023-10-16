@@ -1,5 +1,54 @@
 .popup__open-photo {
-    max-width: 75vw;
-    max-height: 75vh;
-    object-fit: cover;
+  max-width: 75vw;
+  max-height: 75vh;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.popup__open-photo_next {
+  animation: 0.301s scrollNextHidden;
+}
+.popup__open-photo_previous {
+  animation: 0.301s scrollPreviousHidden;
+}
+.popup__open-photo_next-app {
+  animation: 0.301s scrollNextApp;
+}
+.popup__open-photo_previous-app {
+  animation: 0.301s scrollPreviousApp;
+}
+@keyframes scrollNextHidden {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+  }
+  100% {
+    transform: translateX(-707px);
+    transform: hidden;
+  }
+}
+@keyframes scrollPreviousHidden {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(707px);
+  }
+}
+@keyframes scrollNextApp {
+  0% {
+    transform: translateX(707px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes scrollPreviousApp {
+  0% {
+    transform: translateX(-707px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

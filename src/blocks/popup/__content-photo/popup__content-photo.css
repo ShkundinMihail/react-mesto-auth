@@ -1,9 +1,10 @@
 .popup__content-photo {
-    max-width: min-content;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    gap: 10px;
-    text-align: start;
-    animation: animate-rotate 0.3s linear;
+  max-width: min-content;
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+  text-align: start;
+  animation: animate-rotate 0.3s linear;
+  transition: transform 1s ease;
 }

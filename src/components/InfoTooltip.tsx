@@ -1,13 +1,11 @@
-import React from "react";
 import closeIcon from "../images/Close-Icon.svg";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hoocks/useStore";
 import { popupInfoTooltipClose } from "../store/popupSlice";
 
 export function InfoTooltip() {
-  const { infoTooltipVisible, infoTooltipText, infoTooltipImage } = useSelector(
-    (state) => state.popup
-  );
-  const dispatch = useDispatch();
+  const { infoTooltipVisible, infoTooltipText, infoTooltipImage } =
+    useAppSelector((state) => state.popup);
+  const dispatch = useAppDispatch();
   return (
     <div className={`popup  ${infoTooltipVisible ? "popup_opened" : ""}`}>
       <div className="popup__content">

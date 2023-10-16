@@ -1,16 +1,16 @@
-import React from "react";
+import { useEffect, useRef } from "react";
 import { PopupWithForm } from "./PopupWithForm";
 import { newCard } from "../store/cardSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hoocks/useStore";
 import { popupAddCardClose } from "../store/popupSlice";
 
 export function AddPlacePopup() {
-  const titlePlace = React.useRef("");
-  const linkPlace = React.useRef("");
-  const { popupAddCardVisible } = useSelector((state) => state.popup);
-  const dispatch = useDispatch();
+  const titlePlace = useRef<HTMLInputElement>(null!);
+  const linkPlace = useRef<HTMLInputElement>(null!);
+  const { popupAddCardVisible } = useAppSelector((state) => state.popup);
+  const dispatch = useAppDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<Element>) => {
     e.preventDefault();
     dispatch(
       newCard({
@@ -20,8 +20,7 @@ export function AddPlacePopup() {
     );
     dispatch(popupAddCardClose());
   };
-
-  React.useEffect(() => {
+  useEffect(() => {
     titlePlace.current.value = "";
     linkPlace.current.value = "";
   }, [popupAddCardVisible]);
@@ -44,8 +43,8 @@ export function AddPlacePopup() {
             required
             placeholder="Название"
             type="text"
-            minLength="2"
-            maxLength="30"
+            minLength={Number(2)}
+            maxLength={Number(30)}
             data-valid-value="в поле «Название» должно быть от 2 до
              30 символов"
           />
@@ -57,8 +56,8 @@ export function AddPlacePopup() {
             ref={linkPlace}
             className="popup__input-style popup__input-style_edit_work"
             id="linkPhoto"
-            minLength="2"
-            maxLength="400"
+            minLength={Number(2)}
+            maxLength={Number(400)}
             required
             placeholder="Ссылка на картинку"
             type="url"

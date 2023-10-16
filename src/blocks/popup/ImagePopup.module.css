@@ -1,0 +1,42 @@
+/* БЭМ надоел */
+.scrollButtonNext,
+.scrollButtonBack {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  opacity: 0.4;
+  background-color: transparent;
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  border-left: none;
+  border-top: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.scrollButtonNext {
+  transform: rotate(-45deg);
+}
+.scrollButtonBack {
+  transform: rotate(135deg);
+}
+.imageContainer {
+  width: 707px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  gap: 10px;
+}
+.scrollNext {
+  animation: 1s scrollNext;
+}
+@media screen and (max-width: 440px) {
+  .scrollButtonBack,
+  .scrollButtonNext {
+    width: 15px;
+    height: 15px;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+  }
+}

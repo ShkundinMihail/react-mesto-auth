@@ -1,20 +1,23 @@
-import { Card } from "../components/Card.js";
+import { Card } from "./Card";
 import iconEdit from "../images/edit-icon.svg";
 import photoIcon from "../images/addPhoto-icon.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hoocks/useStore";
 import { Oval } from "react-loader-spinner";
 import {
   popupEditUserOpen,
   popupEditAvatarOpen,
   popupAddCardOpen,
-} from "../store/popupSlice.js";
+} from "../store/popupSlice";
+import { ICardSlice } from "../types/typeCards.js";
 
 export function Main() {
-  const { status, error, cardsArray } = useSelector((state) => state.card);
-  const { name, about, statusUser, avatar } = useSelector(
+  const { status, error, cardsArray }: ICardSlice = useAppSelector(
+    (state) => state.card
+  );
+  const { name, about, statusUser, avatar } = useAppSelector(
     (state) => state.user
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <main className="content">

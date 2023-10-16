@@ -1,22 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import { PopupWithForm } from "./PopupWithForm";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hoocks/useStore";
 import { editUserInformation } from "../store/userSlice";
 import { popupEditUserClose } from "../store/popupSlice";
 
 export function EditProfilePopup() {
-  const { name, about } = useSelector((state) => state.user);
-  const { popupEditUserInfoVisible } = useSelector((state) => state.popup);
-  const dispatch = useDispatch();
-  const userName = useRef("");
-  const userAbout = useRef("");
+  const { name, about } = useAppSelector((state) => state.user);
+  const { popupEditUserInfoVisible } = useAppSelector((state) => state.popup);
+  const dispatch = useAppDispatch();
+  const userName = useRef<HTMLInputElement>(null!);
+  const userAbout = useRef<HTMLInputElement>(null!);
   useEffect(() => {
     userName.current.value = name;
     userAbout.current.value = about;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popupEditUserInfoVisible]);
 
-  const submitProfile = (e) => {
+  const submitProfile = (e: React.FormEvent<Element>): void => {
     e.preventDefault();
     if (userName.current.value !== name || userAbout.current.value !== about) {
       dispatch(
@@ -46,8 +46,8 @@ export function EditProfilePopup() {
             id="name"
             placeholder="Имя"
             type="text"
-            minLength="2"
-            maxLength="40"
+            minLength={2}
+            maxLength={40}
             required
             data-valid-value="в поле «Имя» должно быть от 2 до
                 40
@@ -63,8 +63,8 @@ export function EditProfilePopup() {
             id="work"
             placeholder="О себе"
             type="text"
-            minLength="2"
-            maxLength="200"
+            minLength={2}
+            maxLength={30}
             required
             data-valid-value="в поле «О себе» должно быть от 2 до 200 символов"
           />

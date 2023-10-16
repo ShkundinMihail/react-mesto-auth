@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
 import { PopupWithForm } from "./PopupWithForm";
 import { editUserAvatar } from "../store/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hoocks/useStore";
 import { popupEditAvatarClose } from "../store/popupSlice";
 
 export function EditAvatarPopup() {
-  const linkToAvatar = useRef("");
-  const dispatch = useDispatch();
-  const { popupEditUserAvatarVisible } = useSelector((state) => state.popup);
+  const linkToAvatar = useRef<HTMLInputElement>(null!);
+  const dispatch = useAppDispatch();
+  const { popupEditUserAvatarVisible } = useAppSelector((state) => state.popup);
   useEffect(() => {
     linkToAvatar.current.value = "";
   }, [popupEditUserAvatarVisible]);
-  const submitAvatar = (e) => {
+  const submitAvatar = (e: React.FormEvent<Element>) => {
     e.preventDefault();
     dispatch(editUserAvatar({ avatar: linkToAvatar.current.value }));
     dispatch(popupEditAvatarClose());

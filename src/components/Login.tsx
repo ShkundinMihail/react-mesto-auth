@@ -1,12 +1,13 @@
 import { login } from "../store/authSlice";
 import { verificationTokenAsync } from "../store/checkTokenSlice";
 import { AutorizationForm } from "./AutorizationForm";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../hoocks/useStore";
+import { IUserRegisterLogin } from "../types/typeUsers";
 
 export function Login() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const handleLogin = async (authData) => {
+  const handleLogin = async (authData: IUserRegisterLogin) => {
     await dispatch(login(authData));
     await dispatch(verificationTokenAsync());
   };

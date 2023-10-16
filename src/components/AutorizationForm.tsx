@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ISubmitUserProps } from "../types/typeUsers";
 
-export const AutorizationForm = ({ handleSubmitForm }) => {
-  const email = useRef("");
-  const password = useRef("");
+export const AutorizationForm = ({ handleSubmitForm }: ISubmitUserProps) => {
+  const email = useRef<HTMLInputElement>(null!);
+  const password = useRef<HTMLInputElement>(null!);
   const location = useLocation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleSubmitForm({
       email: email.current.value,

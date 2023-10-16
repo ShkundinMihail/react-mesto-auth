@@ -1,16 +1,15 @@
-import { useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hoocks/useStore";
 import headerLogo from "../images/header-logo.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutAction } from "../store/userSlice";
 import { deleteCardsFromMemoryAction } from "../store/cardSlice";
-import { useDispatch } from "react-redux";
 import { logoutToken } from "../store/checkTokenSlice";
 
 export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { loginUser, userEmail } = useSelector((state) => state.checkToken);
+  const dispatch = useAppDispatch();
+  const { loginUser, userEmail } = useAppSelector((state) => state.checkToken);
   const handleLogOutAccount = () => {
     dispatch(logoutAction());
     dispatch(deleteCardsFromMemoryAction());

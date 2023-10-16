@@ -1,11 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import {
+  IPopupData,
+  IPopupDeleteAction,
+  IPopupInfoTooltip,
+  IPopupSlice,
+} from "../types/typePopups";
 
 const popupSlice = createSlice({
   name: "popup",
   initialState: {
     popupImageVisible: false,
-    popupImageLink: null,
-    popupImageTitle: null,
+    popupImageLink: "",
+    popupImageTitle: "",
+    popupImageId: "",
     //
     popupEditUserInfoVisible: false,
     popupEditUserAvatarVisible: false,
@@ -16,18 +23,20 @@ const popupSlice = createSlice({
     //
     infoTooltipVisible: false,
     infoTooltipText: "",
-    infoTooltipImage: null,
-  },
+    infoTooltipImage: "",
+  } as IPopupSlice,
   reducers: {
-    popupImageOpen(state, action) {
+    popupImageOpen(state, action: PayloadAction<IPopupData>) {
       state.popupImageVisible = true;
       state.popupImageLink = action.payload.link;
-      state.popupImageTitle = action.payload.title;
+      state.popupImageTitle = action.payload.name;
+      state.popupImageId = action.payload._id;
     },
     popupImageClose(state) {
       state.popupImageVisible = false;
-      state.popupImageLink = null;
-      state.popupImageTitle = null;
+      state.popupImageLink = "";
+      state.popupImageTitle = "";
+      state.popupImageId = "";
     },
     popupEditUserOpen(state) {
       state.popupEditUserInfoVisible = true;
@@ -47,7 +56,7 @@ const popupSlice = createSlice({
     popupAddCardClose(state) {
       state.popupAddCardVisible = false;
     },
-    popupDeleteCardOpen(state, action) {
+    popupDeleteCardOpen(state, action: PayloadAction<IPopupDeleteAction>) {
       state.popupDeleteCardVisible = true;
       state.IdCardBeingDeleted = action.payload.cardId;
     },
@@ -55,7 +64,7 @@ const popupSlice = createSlice({
       state.popupDeleteCardVisible = false;
       state.IdCardBeingDeleted = "";
     },
-    popupInfoTooltipOpen(state, action) {
+    popupInfoTooltipOpen(state, action: PayloadAction<IPopupInfoTooltip>) {
       state.infoTooltipVisible = true;
       state.infoTooltipText = action.payload.text;
       state.infoTooltipImage = action.payload.image;
@@ -63,7 +72,7 @@ const popupSlice = createSlice({
     popupInfoTooltipClose(state) {
       state.infoTooltipVisible = false;
       state.infoTooltipText = "";
-      state.infoTooltipImage = null;
+      state.infoTooltipImage = "";
     },
   },
 });

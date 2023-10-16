@@ -5,7 +5,7 @@ import userSlice from "./userSlice";
 import popupSlice from "./popupSlice";
 import authSlice from "./authSlice";
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     card: cardSlice,
     checkToken: checkTokenSlice,
@@ -14,3 +14,6 @@ export default configureStore({
     auth: authSlice,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

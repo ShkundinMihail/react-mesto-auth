@@ -1,9 +1,10 @@
 import React from "react";
 import closeIcon from "../images/Close-Icon.svg";
+import { IPopupProps } from "../types/typePopups";
 
-export function PopupWithForm(props) {
-  const ref = React.useRef();
-  const closePopupWhenClickingOnOverlay = (e) => {};
+export function PopupWithForm(props: IPopupProps) {
+  const ref = React.useRef<HTMLInputElement>(null!);
+  const closePopupWhenClickingOnOverlay = (e: React.MouseEvent) => {};
   return (
     <div
       ref={ref}
